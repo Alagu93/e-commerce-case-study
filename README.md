@@ -59,7 +59,7 @@ GROUP BY
     AVG(Quantity) = 2
     ORDER BY 
     TotalRevenue DESC;
-**category-wise customer reach**
+**category-wise customer reach**:
    For each product category, calculate the unique number of customers purchasing from it. This will help understand which categories have wider appeal across the customer base.
    WITH MonthlySales AS (
     SELECT 
@@ -83,7 +83,7 @@ LEFT JOIN
     MonthlySales ms2 ON ms1.month = DATE_FORMAT(DATE_ADD(ms2.month, INTERVAL 1 MONTH), '%Y-%m')  -- Join to get previous month
 ORDER BY 
     ms1.month;
-**Sales Trend Analysis**
+**Sales Trend Analysis**:
 Analyze the month-on-month percentage change in total sales to identify growth trends.
 SELECT 
     DATE_FORMAT(order_date, '%Y-%m') AS month,  -- Format the order date to YYYY-MM
@@ -99,7 +99,7 @@ GROUP BY
     month
 ORDER BY 
     month;
-**Average Order FLuctuation**
+**Average Order FLuctuation**:
 Examine how the average order value changes month-on-month. Insights can guide pricing and promotional strategies to enhance order value.
 WITH MonthlyOrderValue AS (
   
@@ -119,7 +119,7 @@ FROM
     MonthlyOrderValue mov
 ORDER BY 
     ChangeInValue DESC;
-**Inventory refresh rate**
+**Inventory refresh rate**:
 Based on sales data, identify products with the fastest turnover rates, suggesting high demand and the need for frequent restocking.
 SELECT 
     product_id, 
@@ -131,7 +131,7 @@ GROUP BY
 ORDER BY 
     SalesFrequency DESC
 LIMIT 5;
-**Low engagement products**
+**Low engagement products**:
 List products purchased by less than 40% of the customer base, indicating potential mismatches between inventory and customer interest.
 WITH TotalCustomers AS (
     SELECT 
@@ -167,7 +167,7 @@ CROSS JOIN
     TotalCustomers tc
 WHERE 
     pcc.UniqueCustomerCount < (0.40 * tc.TotalCustomerCount);
-**customer acquistion trends**
+**customer acquistion trends**:
 Evaluate the month-on-month growth rate in the customer base to understand the effectiveness of marketing campaigns and market expansion efforts.
 WITH FirstPurchase AS (
     SELECT 
@@ -187,7 +187,7 @@ GROUP BY
     FirstPurchaseMonth
 ORDER BY 
     FirstPurchaseMonth ASC;
-**Peak sales period Identification**
+**Peak sales period Identification**:
 Identify the months with the highest sales volume, aiding in planning for stock levels, marketing efforts, and staffing in anticipation of peak demand periods.
 SELECT 
     DATE_FORMAT(STR_TO_DATE(order_date, '%Y-%m-%d'), '%Y-%m') AS Month,  
