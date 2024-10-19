@@ -59,6 +59,7 @@ GROUP BY
     AVG(Quantity) = 2
     ORDER BY 
     TotalRevenue DESC;
+    
 **category-wise customer reach**:
    For each product category, calculate the unique number of customers purchasing from it. This will help understand which categories have wider appeal across the customer base.
    WITH MonthlySales AS (
@@ -83,6 +84,7 @@ LEFT JOIN
     MonthlySales ms2 ON ms1.month = DATE_FORMAT(DATE_ADD(ms2.month, INTERVAL 1 MONTH), '%Y-%m')  -- Join to get previous month
 ORDER BY 
     ms1.month;
+    
 **Sales Trend Analysis**:
 Analyze the month-on-month percentage change in total sales to identify growth trends.
 SELECT 
