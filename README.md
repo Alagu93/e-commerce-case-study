@@ -101,6 +101,7 @@ GROUP BY
     month
 ORDER BY 
     month;
+    
 **Average Order FLuctuation**:
 Examine how the average order value changes month-on-month. Insights can guide pricing and promotional strategies to enhance order value.
 WITH MonthlyOrderValue AS (
@@ -121,6 +122,7 @@ FROM
     MonthlyOrderValue mov
 ORDER BY 
     ChangeInValue DESC;
+    
 **Inventory refresh rate**:
 Based on sales data, identify products with the fastest turnover rates, suggesting high demand and the need for frequent restocking.
 SELECT 
@@ -133,6 +135,7 @@ GROUP BY
 ORDER BY 
     SalesFrequency DESC
 LIMIT 5;
+
 **Low engagement products**:
 List products purchased by less than 40% of the customer base, indicating potential mismatches between inventory and customer interest.
 WITH TotalCustomers AS (
@@ -169,6 +172,7 @@ CROSS JOIN
     TotalCustomers tc
 WHERE 
     pcc.UniqueCustomerCount < (0.40 * tc.TotalCustomerCount);
+    
 **customer acquistion trends**:
 Evaluate the month-on-month growth rate in the customer base to understand the effectiveness of marketing campaigns and market expansion efforts.
 WITH FirstPurchase AS (
@@ -189,6 +193,7 @@ GROUP BY
     FirstPurchaseMonth
 ORDER BY 
     FirstPurchaseMonth ASC;
+    
 **Peak sales period Identification**:
 Identify the months with the highest sales volume, aiding in planning for stock levels, marketing efforts, and staffing in anticipation of peak demand periods.
 SELECT 
@@ -200,7 +205,8 @@ GROUP BY
     Month                                                             
 ORDER BY 
     TotalSales DESC                                                    
-LIMIT 3;                                                             
+LIMIT 3;      
+
 ## Insights and Results
 1.Which of the cities must be focused as a part of marketing strategies?
 Delhi,Jaipur,chennai
